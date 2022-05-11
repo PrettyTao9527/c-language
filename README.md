@@ -10,6 +10,11 @@ But would you mind giving me some help?
 what should I do for it??
 
 1.未add之前"git restore filename"=="git restore --worktree filename"=="git checkout -- filename";<*已验证*>
-2.在add之后，不管是否有commit，好像"git restore --staged filename" or "git restore filename" or "git restore --source=HEAD --staged --worktree filename"好像都不能撤销上一步的修改，而"git checkout -- filename"则可以，而且不管你是否有commit都可以，只要未关闭git bash here,都可以回到上次关闭bash之前最后一次add的状态。这就很尴尬了，毕竟教程的版本跟我的不一样，时代都在进步;
+
+2.在add之后，有两种方法可以撤销上一次的修改：
+①"git restore --staged filename"从暂存区回退到工作去，那么此时执行git status会发现已经没有添加的修改等待提交（no changes added to commit),然而此时只是会退到工作区，但没有删除工作区的修改，所以还要执行"git restore filename" 方能彻底撤销修改！
+②"git reset HEAD filename"把暂存区的修改撤销（相当于unstaged）,此时同样是回到工作区而已，并未删除修改，需再执行"git checkout -- filename",此时才算完成撤销上次修改。
+
+3.在commit之后，又如何撤销修改呢？方法①：版本回退命令 "git reset --hard <commit_id>" or "git reset --hard HEAD^";<*已验证*>
 
 ```
