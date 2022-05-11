@@ -10,6 +10,6 @@ But would you mind giving me some help?
 what should I do for it??
 
 1.未add之前"git restore filename"=="git restore --worktree filename"=="git checkout -- filename";<*已验证*>
-2.在add之后好像"git restore --staged filename" or "git restore filename"好像都不能撤销上一步的修改，而"git checkout -- filename"则可以，而且不管你是否有commit都可以，只要未关闭git bash here,都可以回到上次关闭bash之前最后一次add的状态。这就很尴尬了，毕竟教程的版本跟我的不一样，时代都在进步;
+2.在add之后，不管是否有commit，好像"git restore --staged filename" or "git restore filename" or "git restore --source=HEAD --staged --worktree filename"好像都不能撤销上一步的修改，而"git checkout -- filename"则可以，而且不管你是否有commit都可以，只要未关闭git bash here,都可以回到上次关闭bash之前最后一次add的状态。这就很尴尬了，毕竟教程的版本跟我的不一样，时代都在进步;
 
 ```
