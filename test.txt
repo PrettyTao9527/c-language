@@ -16,3 +16,15 @@
   相当于撤销了"git add test.txt"这一步，还没有恢复文件，需要执行"git checkout -- test.txt"
   or  "git restore test.txt",此时才算恢复文件。
 
+3.特殊情况，如果文件只是git add, 但没有commit，那么执行删除操作会如何？又如何恢复呢？
+情况一，可以执行"rm filename"删除，同时也可以执行"git restore filename"来恢复；
+情况二，执行"git rm filename",报错（已经有修改被暂存在index中），提示两种方法：
+--cached(保留文件)， or -f（强制删除文件，包括本地和暂存区）。
+①执行"git rm --cached filename",命令可执行，没报错。就是不知道发生了什么变化，
+本地该文件还在，而且内容没被修改，但staged上对该文件的修改消失了，
+而且git不追踪该文件了，提示untracked files，相当于这个文件没有被git add过一样。
+②执行"git rm -f filename"命令时，此时是强制删除，
+既清除了staged上的修改，还一并把本地文件给删除了,
+相当"git rm --cached filename"+本地右键命令组合套装。那么此时能恢复吗，怎么恢复？
+估计得去垃圾回收站瞅瞅了（啥也没有）。
+
